@@ -1,35 +1,32 @@
 function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215)
-    .toString(16)
-    .padStart(6, 0)}`;
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-const refs = {
-  btnCreate: document.querySelector('button[data-create]'),
-  btnDestroy: document.querySelector('button[data-destroy]'),
-  divBoxes: document.querySelector('#boxes'),
-  input: document.querySelector('input'),
-};
+const inputNumberBoxes = document.querySelector('input');
+const buttonCreateBoxes = document.querySelector('[data-create]');
+const buttonDestroyBoxes = document.querySelector('[data-destroy]');
+const outputMurkupBoxes = document.querySelector('#boxes');
 
-function createBoxes(amount) {
-  const boxes = [];
-  let size = 30;
-  for (let i = 0; i < amount; i += 1) {
-    const createDiv = document.createElement('div');
-    createDiv.style.width = `${size}`;
-    createDiv.style.height = `${size}`;
-    createDiv.style.backgroundColor = getRandomHexColor();
-    boxes.push(createDiv);
-    size += 10;
+function createBoxes(number) {
+  const elements = [];
+  if (number) {
+    outputMurkupBoxes.innerHTML = '';
+
+    for (let i = 0; i < number; i++) {
+      const murkupBoxes = document.createElement('div');
+      murkupBoxes.style.background = getRandomHexColor();
+      murkupBoxes.style.width = `${30 + 10 * i}px`;
+      murkupBoxes.style.height = `${30 + 10 * i}px`;
+      elements.push(murkupBoxes);
+    }
+    return elements;
   }
-  refs.divBoxes.append(...boxes);
 }
 
-refs.btnCreate.addEventListener('click', () => {
-  const amount = refs.input.value;
-  createBoxes(amount);
+buttonCreateBoxes.addEventListener('click', () => {
+  outputMurkupBoxes.append(...createBoxes(inputNumberBoxes.value));
 });
 
-refs.btnDestroy.addEventListener('click', () => {
-  refs.divBoxes.innerHTML = '';
+buttonDestroyBoxes.addEventListener('click', () => {
+  outputMurkupBoxes.innerHTML = '';
 });
