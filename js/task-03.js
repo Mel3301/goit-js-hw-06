@@ -14,13 +14,14 @@ const images = [
 ];
 
 const createImg = document.querySelector('ul.gallery');
+createImg.style.listStyle = 'none';
 createImg.style.display = 'flex';
 createImg.style.gap = '15px';
 createImg.style.padding = '0px';
 const galleryItems = images
   .map(
     img =>
-      `<li style = "list-style: none;"><img src="${img.url}" alt="${img.alt}" width="500" height="300"></li>`
+      `<li><img src="${img.url}" alt="${img.alt}" width="500" height="300"></li>`
   )
   .join('');
 createImg.insertAdjacentHTML('beforeend', galleryItems);
