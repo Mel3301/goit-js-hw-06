@@ -20,7 +20,7 @@ createImg.style.padding = '0px';
 const galleryItems = images
   .map(
     img =>
-      `<li style = "list-style: none;"><img src="${img.url}" alt="${img.alt}" width="500" height = "300"></li>`
+      `<li style = "list-style: none;"><img src="${img.url}" alt="${img.alt}" width="500" height="300"></li>`
   )
   .join('');
 createImg.insertAdjacentHTML('beforeend', galleryItems);
